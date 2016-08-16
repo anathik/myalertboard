@@ -1115,3 +1115,98 @@ Binding(ALT+COMMAND+V,
 
 !ENTRY org.apache.ivyde.eclipse 1 0 2016-08-16 15:09:23.002
 !MESSAGE IvyDE plugin started
+!SESSION 2016-08-16 15:32:47.261 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -data /Users/ConxSoft/Documents/dev/projects/conxsoft/myalertboard
+
+!ENTRY org.eclipse.ui 2 0 2016-08-16 15:32:53.987
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2016-08-16 15:32:53.987
+!MESSAGE Cannot bind to an undefined command: plug-in='com.liferay.ide.project.ui', id='com.liferay.ide.project.ui.upgrade.openLiferay7UpgradeAssistant'
+
+!ENTRY org.eclipse.jface 2 0 2016-08-16 15:32:57.268
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-08-16 15:32:57.268
+!MESSAGE A conflict occurred for ALT+COMMAND+W:
+Binding(ALT+COMMAND+W,
+	ParameterizedCommand(Command(com.liferay.ide.service.ui.buildWSDD,Build WSDD,
+		Run the build-wsdd command,
+		Category(com.liferay.ide.project.ui.handlers,Liferay Commands,Liferay Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@702432cc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+W,
+	ParameterizedCommand(Command(org.eclipse.ui.navigate.showInQuickMenu,Show In...,
+		Open the Show In menu,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5039c2cf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-08-16 15:32:57.268
+!MESSAGE A conflict occurred for ALT+COMMAND+V:
+Binding(ALT+COMMAND+V,
+	ParameterizedCommand(Command(com.liferay.ide.service.ui.buildService,Build Service,
+		Run the build-service command,
+		Category(com.liferay.ide.project.ui.handlers,Liferay Commands,Liferay Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@355b4c34,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+V,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.move.element,Move - Refactoring ,
+		Move the selected element to a new location,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5ca006ac,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-08-16 15:32:57.268
+!MESSAGE A conflict occurred for ALT+COMMAND+N:
+Binding(ALT+COMMAND+N,
+	ParameterizedCommand(Command(com.liferay.ide.portlet.ui.buildLang,Build Languages,
+		Run the build-lang command,
+		Category(com.liferay.ide.project.ui.handlers,Liferay Commands,Liferay Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@dc3eda6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+N,
+	ParameterizedCommand(Command(org.eclipse.ui.file.newQuickMenu,New menu,
+		Open the New menu,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1372696b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.core.net 1 0 2016-08-16 15:32:58.197
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2016-08-16 15:33:01.596
+!MESSAGE starting IvyDE plugin
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2016-08-16 15:33:01.618
+!MESSAGE IvyDE plugin started
+
+!ENTRY org.eclipse.core.resources 4 568 2016-08-16 15:37:59.092
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: /Users/ConxSoft/Documents/dev/projects/conxsoft/myalertboard/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/.markers.snap (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:133)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1769)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1853)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1222)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1163)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
