@@ -15,11 +15,11 @@ public class Activator extends DependencyActivatorBase {
     @Override
     public synchronized void init(BundleContext context, DependencyManager manager) throws Exception {
 		Properties properties = new Properties();
-		properties.put(Constants.REPEAT_COUNT, new Integer(10));
-		properties.put(Constants.REPEAT_INTERVAL_PERIOD, "millisecond");
-		properties.put(Constants.REPEAT_INTERVAL_VALUE, new Long(50));
+		properties.put(Constants.REPEAT_COUNT, -1);
+		properties.put(Constants.REPEAT_INTERVAL_PERIOD, "second");
+		properties.put(Constants.REPEAT_INTERVAL_VALUE, new Long(1));
 		manager.add(createComponent()
-				.setInterface(Job.class.getName(), properties)
+				.setInterface(Job.class.getName(), null)
 				.setImplementation(PollingJob.class)
 	            .add(createServiceDependency()
 	                	.setService(IAlertNotifier.class)

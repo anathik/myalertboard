@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1471452749000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1471466929000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.springsource.javax.jms"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.1.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="622d1880b88dba559047aac66d462a764804b1a865885febeaca5e12a8322eb2"/>
+      <attribute name="url" value="com.springsource.javax.jms/com.springsource.javax.jms-1.1.0.jar"/>
+      <attribute name="size" type="Long" value="26178"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.springsource.javax.jms"/>
+      <attribute name="bundle-version" type="Version" value="1.1.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.springsource.javax.jms"/>
+      <attribute name="bundle-version" type="Version" value="1.1.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.jms"/>
+      <attribute name="version" type="Version" value="1.1.0"/>
+      <attribute name="bundle-symbolic-name" value="com.springsource.javax.jms"/>
+      <attribute name="bundle-version" type="Version" value="1.1.0"/>
+      <directive name="uses" value="javax.transaction.xa"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.transaction.xa)(version&gt;=1.0.1)(!(version&gt;=2.0.0)))"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+  </resource>
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.jsonwebtoken.jjwt"/>
@@ -60,6 +92,192 @@
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.bouncycastle.jce.spec)(version&gt;=1.51.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="javax.mail"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="17bddec86cfe01092bd358c249b7c2ce4295c13cdad314d8eacc8426fdbe3034"/>
+      <attribute name="url" value="javax.mail/javax.mail-1.4.5.jar"/>
+      <attribute name="size" type="Long" value="508143"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.mail.internet"/>
+      <attribute name="version" type="Version" value="1.4.0"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="com.sun.mail.util,javax.mail,javax.activation,javax.mail.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.mail.util"/>
+      <attribute name="version" type="Version" value="1.4.0"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.activation,javax.mail.internet"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.mail.search"/>
+      <attribute name="version" type="Version" value="1.4.0"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail.internet,javax.mail"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.mail"/>
+      <attribute name="version" type="Version" value="1.4.0"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail.event,javax.mail.search,javax.activation,com.sun.mail.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="javax.mail.event"/>
+      <attribute name="version" type="Version" value="1.4.0"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.imap"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="com.sun.mail.iap,com.sun.mail.imap.protocol,javax.mail,javax.activation,com.sun.mail.util,javax.mail.internet,javax.mail.search,javax.mail.event"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.imap.protocol"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="com.sun.mail.iap,com.sun.mail.util,javax.mail.internet,javax.mail,javax.mail.search,com.sun.mail.imap,javax.security.sasl,javax.security.auth.callback"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.iap"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="com.sun.mail.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.pop3"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail,com.sun.mail.util,javax.mail.internet,javax.net.ssl,javax.mail.util"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.smtp"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="com.sun.mail.util,javax.mail.internet,javax.mail,javax.security.sasl,javax.security.auth.callback"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.util"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail,javax.net.ssl,javax.mail.internet,javax.mail.util,sun.security.util,javax.net,javax.security.auth.x500"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.util.logging"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.mail,javax.mail.internet,javax.mail.util,javax.activation,com.sun.mail.smtp"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sun.mail.handlers"/>
+      <attribute name="version" type="Version" value="1.4.5"/>
+      <attribute name="bundle-symbolic-name" value="javax.mail"/>
+      <attribute name="bundle-version" type="Version" value="1.4.5"/>
+      <directive name="uses" value="javax.activation,javax.mail.internet,javax.mail,javax.xml.transform,javax.xml.transform.stream"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.handlers)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.iap)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.imap)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.imap.protocol)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.pop3)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.smtp)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.util)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=com.sun.mail.util.logging)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.activation)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.crypto.spec)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.mail)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.mail.event)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.mail.internet)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.mail.search)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=javax.mail.util)(version&gt;=1.4.0))"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.net.ssl)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.security.auth.callback)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.security.auth.x500)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.security.sasl)"/>
+      <directive name="resolution" value="optional"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=javax.xml.transform.stream)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=sun.security.util)"/>
       <directive name="resolution" value="optional"/>
     </requirement>
   </resource>

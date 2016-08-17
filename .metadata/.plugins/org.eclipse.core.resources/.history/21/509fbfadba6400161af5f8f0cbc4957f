@@ -1,0 +1,11 @@
+-buildpath: \
+	osgi.core,\
+	osgi.cmpn,\
+	org.apache.felix.dependencymanager,\
+	org.apache.httpcomponents.httpcore;version=4.2,\
+	org.apache.httpcomponents.httpclient;version=4.2,\
+	com.springsource.org.apache.commons.logging;version=1.1,\
+	org.apache.commons.lang3;version=3.1,\
+	twilio-java-osgi.common;version=latest,\
+	twilio-java-osgi.main;version=latest
+-sub: *.bnd

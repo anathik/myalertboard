@@ -1,0 +1,5 @@
+-exportcontents: *
+Bundle-Version: 5.10.2.${tstamp}
+Export-Package: *
+Include-Resource: \
+	@jar/twilio-java-sdk-5.2.1-edge-jar-with-dependencies.jar

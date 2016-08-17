@@ -18,7 +18,6 @@ public class HttpClientPollerImpl implements IPoller {
 	private HttpClient m_client;
 
 	public void start() {
-		m_client = new DefaultHttpClient();
 	}
 
 	@Override
@@ -26,6 +25,7 @@ public class HttpClientPollerImpl implements IPoller {
 		HttpGet request = new HttpGet(loc.getUrl());
 		HttpResponse response = null;
 		try {
+			m_client = new DefaultHttpClient();
 			response = m_client.execute(request);
 		} catch (UnknownHostException e) {
 			return HttpStatus.SC_BAD_GATEWAY;
