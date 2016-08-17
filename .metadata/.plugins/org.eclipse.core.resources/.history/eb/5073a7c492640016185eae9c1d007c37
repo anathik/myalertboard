@@ -1,0 +1,31 @@
+package org.conxworks.paas.monitoring.alertbot;
+
+import org.apache.felix.dm.DependencyActivatorBase;
+import org.apache.felix.dm.DependencyManager;
+import org.conxworks.paas.monitoring.alertbot.api.IAlertNotifier;
+import org.conxworks.paas.monitoring.poller.api.IPoller;
+import org.osgi.framework.BundleContext;
+import org.osgi.service.log.LogService;
+
+public class Activator extends DependencyActivatorBase {
+    @Override
+    public synchronized void init(BundleContext context, DependencyManager manager) throws Exception {
+        manager.add(createComponent()
+        	.setInterface(Object.class.getName(), null)
+            .setImplementation(AlertBotManager.class)
+            .add(createServiceDependency()
+            	.setService(IAlertNotifier.class)
+            	.setRequired(true))
+            .add(createServiceDependency()
+            	.setService(IPoller.class)
+            	.setRequired(true))
+            .add(createServiceDependency()
+                .setService(LogService.class)
+                .setRequired(false))
+            );
+    }
+
+    @Override
+    public synchronized void destroy(BundleContext context, DependencyManager manager) throws Exception {
+    }
+}

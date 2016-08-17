@@ -12,6 +12,7 @@ public class Activator extends DependencyActivatorBase {
         manager.add(createComponent()
         	.setInterface(IAlertNotifier.class.getName(), null)
             .setImplementation(TwilioAlertNotifierImpl.class)
+            .setCallbacks(null, "start", null, null)//init, start, stop and destroy.
             .add(createServiceDependency()
                 .setService(LogService.class)
                 .setRequired(false))

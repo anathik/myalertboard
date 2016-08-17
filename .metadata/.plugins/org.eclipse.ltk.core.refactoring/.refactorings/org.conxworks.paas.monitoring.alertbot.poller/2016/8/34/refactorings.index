@@ -1,0 +1,14 @@
+1471443546154	Rename type 'IAlertNotifier'
+1471443774138	Rename type 'NotificationMessage'
+1471444485424	Rename type 'AlertNotificationException'
+1471444573477	Rename package 'org.conxworks.paas.monitoring.alertbot.impl.twilio'
+1471444604680	Rename type 'TwilioAlertNotifierImpl'
+1471445014688	Rename local variable 'message'
+1471445443937	Rename package 'org.conxworks.paas.monitoring.alertbot.api'
+1471445516611	Rename package 'org.conxworks.paas.monitoring.alertbot'
+1471445550888	Rename package 'org.conxworks.paas.monitoring.alertbot'
+1471445614182	Rename package 'org.conxworks.paas.monitoring.poller'
+1471445622887	Move compilation unit
+1471445627578	Delete element
+1471449996692	Delete elements
+1471450018451	Rename resource 'twilio.bnd'

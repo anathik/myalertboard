@@ -1,0 +1,11 @@
+package org.conxworks.paas.monitoring.alertbot.impl.twilio;
+
+import org.amdatu.scheduling.annotations.RepeatCount;
+import org.amdatu.scheduling.quartz.example.api.MessageStore;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+public class PollingJob extends Job {
+
+}

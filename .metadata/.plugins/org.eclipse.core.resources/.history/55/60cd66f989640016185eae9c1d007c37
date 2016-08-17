@@ -1,0 +1,32 @@
+package org.conxworks.paas.monitoring.poller.impl.httpclient;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.conxworks.paas.monitoring.alertbot.api.PollingException;
+import org.conxworks.paas.monitoring.alertbot.api.IPoller;
+import org.conxworks.paas.monitoring.alertbot.api.Location;
+
+public class HttpClientPollerImpl implements IPoller {
+
+	private HttpClient m_client;
+
+	public void start() {
+		m_client = new DefaultHttpClient();
+	}
+
+	@Override
+	public int ping(Location loc) throws PollingException {
+		HttpGet request = new HttpGet(loc.getUrl());
+		HttpResponse response = null;
+		try {
+			response = m_client.execute(request);
+		} catch (Exception e) {
+			throw new PollingException(e);
+		}
+
+		return response.getStatusLine().getStatusCode();
+	}
+
+}

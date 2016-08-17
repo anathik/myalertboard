@@ -1,0 +1,22 @@
+package org.conxworks.paas.monitoring.alertbot;
+
+import org.conxworks.paas.monitoring.alertbot.api.IAlertNotifier;
+import org.conxworks.paas.monitoring.poller.api.IPoller;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+public class PollingJob implements Job {
+	
+	private volatile IAlertNotifier notifier;
+	private volatile IPoller poller;
+
+	@Override
+	public void execute(JobExecutionContext ctx) throws JobExecutionException {
+		//1. Get URL to poll
+		//2. Poll URL
+		//3a. If return status is OK, do nothing
+		//3b. If return status is NOT OK, do stuff
+	}
+
+}
