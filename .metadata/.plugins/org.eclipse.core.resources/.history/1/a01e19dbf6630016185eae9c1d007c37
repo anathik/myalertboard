@@ -1,0 +1,6 @@
+package org.conxworks.paas.monitoring.alertbot.api;
+
+public interface IAlertNotifier {
+	public void notifyViaSMS(NotificationMessage message);
+	public void notifyViaEmail(NotificationMessage message);
+}

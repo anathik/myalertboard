@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;org.conxworks.paas.monitoring.alertbot&apos; to &apos;org.conxworks.paas.monitoring.alertbot.notifier&apos;" description="Rename resource &apos;org.conxworks.paas.monitoring.alertbot&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/org.conxworks.paas.monitoring.alertbot" name="org.conxworks.paas.monitoring.alertbot.notifier" stamp="1471381526670" updateReferences="true"/>
+</session>

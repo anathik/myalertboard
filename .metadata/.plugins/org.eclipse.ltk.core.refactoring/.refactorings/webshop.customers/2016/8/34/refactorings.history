@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Activator.java&apos; to &apos;org.conxworks.paas.monitoring.alertbot.notifier/src/org.conxworks.paas.monitoring.alertbot.impl.twilio&apos;&#x0A;- Original project: &apos;webshop.customers&apos;&#x0A;- Destination element: &apos;org.conxworks.paas.monitoring.alertbot.notifier/src/org.conxworks.paas.monitoring.alertbot.impl.twilio&apos;&#x0A;- Original element: &apos;webshop.customers.mongo.Activator.java&apos;" description="Copy compilation unit" destination="=org.conxworks.paas.monitoring.alertbot.notifier/src&lt;org.conxworks.paas.monitoring.alertbot.impl.twilio" element1="/src&lt;webshop.customers.mongo{Activator.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1471382889899" units="1" version="1.0"/>
+</session>

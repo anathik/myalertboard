@@ -1,0 +1,2 @@
+-classpath: jar/java-sdk-5.10.2-SNAPSHOT.jar
+Bundle-Version: 5.10.2

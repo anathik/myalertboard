@@ -1,0 +1,20 @@
+package org.conxworks.paas.monitoring.alertbot.impl.twilio;
+
+import org.conxworks.paas.monitoring.alertbot.api.IAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
+
+public class TwilioAlertNotifierImpl implements IAlertNotifier {
+
+	@Override
+	public void notifyViaSMS(NotificationMessage message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyViaEmail(NotificationMessage message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
