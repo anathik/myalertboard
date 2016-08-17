@@ -1,0 +1,6 @@
+-exportcontents: org.codehaus.*,javax.*,com.fasterxml.*
+Bundle-Version: 5.10.2.${tstamp}
+Export-Package: \
+	org.codehaus.*,javax.*,com.fasterxml.*
+Include-Resource: \
+	@jar/twilio-java-sdk-5.2.1-edge-jar-with-dependencies.jar
