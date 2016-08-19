@@ -1,0 +1,7 @@
+pollinghostname=www.myconx.com
+pollingport=80
+pollingpath=
+pollingprotocol=http
+pollingcount=-1
+pollingperiodunit=seconds
+pollingperiod=5

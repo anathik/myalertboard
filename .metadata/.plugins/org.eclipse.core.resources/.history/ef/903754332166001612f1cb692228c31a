@@ -1,0 +1,76 @@
+package org.conxworks.paas.monitoring.alertbot.factory;
+
+import java.util.Dictionary;
+
+import org.osgi.service.cm.ManagedServiceFactory;
+import org.osgi.service.cm.ConfigurationException;
+
+public class PollingMonitorFactory implements ManagedServiceFactory {
+	public static final String PID = "org.conxworks.paas.monitoring.configuration";
+	
+	   @Override
+	    public String getName() {
+	        return PID;
+	    }
+
+	    @Override
+	    public void updated(String pid, Dictionary<String, ?> properties)
+	        throws ConfigurationException {
+
+	        if (m_components.containsKey(pid)) {
+	            m_logService.log(LogService.LOG_INFO, "Removing datasource " + pid);
+	            Component component = m_components.remove(pid);
+	            m_dependencyManager.remove(component);
+	        }
+
+	        String userName = getRequiredStringProperty(properties, "userName");
+	        String password = getRequiredStringProperty(properties, "password");
+	        String driverClassName = getRequiredStringProperty(properties, "driverClassName");
+	        String jdbcUrl = getRequiredStringProperty(properties, "jdbcUrl");
+
+	        boolean managed = false;
+	        if (properties.get("managed") != null) {
+	            managed = BooleanUtils.toBooleanObject((String) properties.remove("managed"));
+	        }
+
+	        String validationQuery = (String) properties.get("validationQuery");
+	        if (StringUtils.isEmpty(validationQuery)) {
+	            validationQuery = m_defaultValidationQueries.getProperty(driverClassName);
+	        }
+	        
+	        Properties dsProps = new Properties();
+	        
+	        Enumeration<String> keys = properties.keys();
+	        while (keys.hasMoreElements()) {
+	            String key = (String) keys.nextElement();
+	            
+	            if (Arrays.asList(new String[]{Constants.SERVICE_PID, "service.factoryPid", "felix.fileinstall.filename" }).contains(key)){
+	                continue;
+	            }
+	            
+	            Object value = properties.get(key);
+	            dsProps.put(key, value);
+
+	            /*
+	             * Compatibility with R5 and earlier releases in which the serviceName property was published as the name service property
+	             */
+	            if ("serviceName".equals(key) && properties.get("name") == null) {
+	                dsProps.put("name", value);
+	            }
+	        }
+	        
+	        DelegatingDataSource ds = new DelegatingDataSource(userName, password, driverClassName, jdbcUrl, managed, validationQuery);
+	        Component component = m_dependencyManager
+	            .createComponent()
+	            .setInterface(DataSource.class.getName(), dsProps)
+	            .setImplementation(ds)
+	            .add(m_dependencyManager.createServiceDependency().setService(LogService.class).setRequired(false));
+
+	        m_logService.log(LogService.LOG_INFO, "Registering datasource [pid: " + pid + " jdbcUrl: "+jdbcUrl+"] ");
+
+	        synchronized (m_components) {
+	            m_dependencyManager.add(component);
+	            m_components.put(pid, component);
+	        }
+	    }	
+}

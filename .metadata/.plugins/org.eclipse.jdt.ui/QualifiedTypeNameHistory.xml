@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.osgi.service.log.LogService"/>
+<fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatCount"/>
+<fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatInterval"/>
+</qualifiedTypeNameHistroy>

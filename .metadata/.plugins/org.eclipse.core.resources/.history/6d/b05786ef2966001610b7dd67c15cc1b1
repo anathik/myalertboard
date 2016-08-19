@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.1.0">
+	<OCD id="ocd" name="ocd">
+		<AD id="pollinghostname" type="String" />
+		<AD id="pollingport" type="Integer" />
+		<AD id="pollingpath" type="String" />
+		<AD id="pollingprotocol" type="String" />
+		<AD id="pollingcount" type="Integer" />
+		<AD id="pollingperiodunit" type="String" />
+		<AD id="pollingperiod" type="Integer" />
+	</OCD>
+	<Designate pid="org.conxworks.paas.monitoring.configuration" factoryPid="org.conxworks.paas.monitoring.configuration" bundle="osgi-dp:*">
+		<Object ocdref="ocd">				
+			<Attribute adref="pollinghostname"
+				name="pollinghostname" content="www.cnn.com" />	
+			<Attribute adref="pollingport"
+				name="pollingport" content="80" />
+			<Attribute adref="pollingpath"
+				name="pollingpath" content="" />
+			<Attribute adref="pollingprotocol"
+				name="pollingprotocol" content="http" />
+			<Attribute adref="pollingcount"
+				name="pollingcount" content="-1" />		
+			<Attribute adref="pollingperiodunit"
+				name="pollingperiodunit" content="seconds" />		
+			<Attribute adref="pollingperiod"
+				name="pollingperiod" content="5" />																	
+		</Object>
+	</Designate>
+</metatype:MetaData>
+  
+  

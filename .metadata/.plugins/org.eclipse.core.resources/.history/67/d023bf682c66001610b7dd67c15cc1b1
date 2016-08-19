@@ -1,0 +1,12 @@
+org.amdatu.configurator.autoconf.dir=config
+launch.name=org.conxworks.paas.monitoring.alertbot.test1
+launch.noreferences=false
+launch.notificationPort=52013
+launch.trace=false
+launch.services=true
+launch.activators=
+launch.embedded=false
+launch.timeout=0
+launch.storage.dir=/Users/mduduzikeswa/Documents/dev/anathi/myalertboard/org.conxworks.paas.monitoring.alertbot.test1/generated/fw
+launch.bundles=/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fdependencies%2Fosgi.core/osgi.core-5.0.0.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fdependencies%2Fosgi.cmpn/osgi.cmpn-5.0.0.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fsnapshot%2Forg.amdatu.configurator.autoconf/org.amdatu.configurator.autoconf-1.0.0.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Frelease%2Forg.amdatu.configurator.properties/org.amdatu.configurator.properties-1.0.1.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fdependencies%2Forg.apache.felix.dependencymanager/org.apache.felix.dependencymanager-4.3.0.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fdependencies%2Fcom.springsource.org.apache.commons.logging/com.springsource.org.apache.commons.logging-1.1.1.jar,/Users/mduduzikeswa/.bnd/cache/http%3A%2F%2Frepository.amdatu.org%2Fdependencies%2Forg.apache.commons.lang3/org.apache.commons.lang3-3.1.0.jar,/Users/mduduzikeswa/Documents/dev/anathi/myalertboard/cnf/localrepo/log4j/log4j-1.2.17.jar,/Users/mduduzikeswa/Documents/dev/anathi/myalertboard/org.conxworks.paas.monitoring.alertbot.test1/generated/org.conxworks.paas.monitoring.alertbot.test1.jar
+launch.keep=false

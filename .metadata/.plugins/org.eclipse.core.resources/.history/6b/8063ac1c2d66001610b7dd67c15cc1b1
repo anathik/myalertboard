@@ -1,0 +1,7 @@
+pollinghostname=www.cnn22.com
+pollingport=80
+pollingpath=
+pollingprotocol=http
+pollingcount=-1
+pollingperiodunit=seconds
+pollingperiod=5

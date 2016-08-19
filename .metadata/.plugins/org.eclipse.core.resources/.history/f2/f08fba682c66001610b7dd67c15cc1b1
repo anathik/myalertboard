@@ -1,0 +1,4 @@
+factory.pid="org.conxworks.paas.monitoring.configuration"
+factory.pidList=[ \
+  "org.conxworks.paas.monitoring.configuration.017ba01d-f1c8-4745-afd4-f2640db16321", \
+  ]
