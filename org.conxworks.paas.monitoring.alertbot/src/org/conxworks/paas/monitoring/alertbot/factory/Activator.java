@@ -5,7 +5,7 @@ import java.util.Properties;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
-import org.conxworks.paas.monitoring.alertbot.api.IAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
 import org.conxworks.paas.monitoring.poller.api.IPoller;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;

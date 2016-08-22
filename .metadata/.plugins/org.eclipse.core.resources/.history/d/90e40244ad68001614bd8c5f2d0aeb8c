@@ -1,0 +1,43 @@
+package org.conxworks.paas.monitoring.alertbot.impl.sendgrid;
+
+import com.twilio.sdk.resource.factory.MessageFactory;
+import com.twilio.sdk.resource.instance.Message;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sendgrid.*;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
+import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
+import org.osgi.service.log.LogService;
+
+public class SendgridAlertNotifierImpl implements IEmailAlertNotifier {
+
+	
+
+	public class SendGridExample {
+	  public void main(String[] args) {
+	    SendGrid sendgrid = new SendGrid("SENDGRID_APIKEY");
+
+	    SendGrid.Email email = new SendGrid.Email();
+
+	    email.addTo("test@sendgrid.com");
+	    email.setFrom("you@youremail.com");
+	    email.setSubject("Sending with SendGrid is Fun");
+	    email.setHtml("and easy to do anywhere, even with Java");
+
+	    SendGrid.Response response = sendgrid.send(email);
+		}
+	}
+
+	@Override
+	public void notifyViaEmail(NotificationMessage message) throws AlertNotificationException {
+		// TODO Auto-generated method stub
+		
+	}
+

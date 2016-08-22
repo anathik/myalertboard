@@ -6,7 +6,8 @@ import java.util.List;
 import org.amdatu.scheduling.annotations.RepeatInterval;
 import org.apache.http.HttpStatus;
 import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
-import org.conxworks.paas.monitoring.alertbot.api.IAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier;
 import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
 import org.conxworks.paas.monitoring.poller.api.IPoller;
 import org.conxworks.paas.monitoring.poller.api.Location;
@@ -17,14 +18,16 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 public class Monitor implements Job {
-	
-	private volatile IAlertNotifier notifier;
+
+	private volatile IEmailAlertNotifier emailNotifier;
+	private volatile ISMSAlertNotifier smsNotifier;
 	private volatile IPoller poller;
 	private volatile LogService logger;
-	
+
 	private String url;
-	
-	
+
+	private int errorCount = 0;
+
 	public Monitor(String url) {
 		super();
 		this.url = url;
@@ -32,27 +35,34 @@ public class Monitor implements Job {
 
 	@Override
 	public void execute(JobExecutionContext ctx) throws JobExecutionException {
-		//2. Poll URL
+		// 2. Poll URL
 		int status = -1;
 		try {
 			status = poller.ping(new Location(url));
-			System.out.println(String.format("Ping to %s returned %d",url,status));
+			System.out.println(String.format("Ping to %s returned a code %d", url, status));
 		} catch (PollingException e) {
 			e.printStackTrace();
 			throw new JobExecutionException(e);
 		}
-		//3a. If return status is OK, do nothing
-		//3b. If return status is NOT OK, do stuff
+		// 3a. If return status is OK, do nothing
+		// 3b. If return status is NOT OK, do stuff
 		if (status != HttpStatus.SC_OK) {
-			List<String> to = new ArrayList<>();
-			to.add("+12152801971");
-			String body = String.format("Site %s not reachable", url);
-			NotificationMessage message = new NotificationMessage("+12158838500", to, body, "ConX Alert");
-			try {
-				notifier.notifyViaSMS(message);
-			} catch (AlertNotificationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// 1. Increment errorCount
+			this.errorCount++;
+			// 2. If exceeds 3, then fire notification
+			if (this.errorCount >= 3) {
+				List<String> to = new ArrayList<>();
+				to.add("+12152801971");
+				String body = String.format("WARNING! %s not reachable. Error %d has occured %v times.", url, status);
+				NotificationMessage message = new NotificationMessage("+12158838500", to, body, "ConX Alert");
+				try {
+					emailNotifier.notifyViaEmail(message);
+				} catch (AlertNotificationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//3. Reset errorCount back to zero.
+				this.errorCount = 0;
 			}
 		}
 	}

@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1471466929000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1471904984000" name="Local" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="com.sendgrid-java"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="3.0.8.201608222228"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="17fc7c1128e733b02770e8a77c62d096f5a5bf4d803050716cc27b14ca641fb4"/>
+      <attribute name="url" value="com.sendgrid-java/com.sendgrid-java-3.0.8.jar"/>
+      <attribute name="size" type="Long" value="41508"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="com.sendgrid-java"/>
+      <attribute name="bundle-version" type="Version" value="3.0.8.201608222228"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="com.sendgrid-java"/>
+      <attribute name="bundle-version" type="Version" value="3.0.8.201608222228"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sendgrid"/>
+      <attribute name="version" type="Version" value="3.0.8"/>
+      <attribute name="bundle-symbolic-name" value="com.sendgrid-java"/>
+      <attribute name="bundle-version" type="Version" value="3.0.8.201608222228"/>
+      <directive name="uses" value="com.fasterxml.jackson.annotation,org.apache.http,org.apache.http.client,org.apache.http.client.methods,org.apache.http.impl.client"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.sendgrid"/>
+      <attribute name="version" type="Version" value="3.0.8"/>
+      <attribute name="bundle-symbolic-name" value="com.sendgrid-java"/>
+      <attribute name="bundle-version" type="Version" value="3.0.8.201608222228"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.annotation)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=com.fasterxml.jackson.databind)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.methods)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.client.utils)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.entity)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.impl.client)"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.apache.http.util)"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>
+    </requirement>
+  </resource>
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.springsource.javax.jms"/>
