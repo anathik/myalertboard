@@ -82,6 +82,9 @@ public class PollingMonitorFactory implements ManagedServiceFactory {
 		            .add(m_dependencyManager.createServiceDependency()
 		                	.setService(IEmailAlertNotifier.class)
 		                	.setRequired(true))
+		            .add(m_dependencyManager.createServiceDependency()
+		                	.setService(IPoller.class)
+		                	.setRequired(true))
 		                .add(m_dependencyManager.createServiceDependency()
 		                    .setService(LogService.class)
 		                    .setRequired(false));
