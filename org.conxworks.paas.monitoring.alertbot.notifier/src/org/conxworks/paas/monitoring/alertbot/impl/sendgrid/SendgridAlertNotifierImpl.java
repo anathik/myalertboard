@@ -1,23 +1,20 @@
 package org.conxworks.paas.monitoring.alertbot.impl.sendgrid;
 
-import com.twilio.sdk.resource.factory.MessageFactory;
-import com.twilio.sdk.resource.instance.Message;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sendgrid.*;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
 import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
-import org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier;
 import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
-import org.osgi.service.log.LogService;
 
 public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
+	
+	private SendGrid sg;
+
+	public void start() {
+		this.sg = new SendGrid(System.getenv("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"));
+	}
+	
 	@Override
 	public void notifyViaEmail(NotificationMessage message) throws AlertNotificationException {
 	    Email from = new Email("alertbot@conxsoft.com");
@@ -26,7 +23,6 @@ public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
 	    Content content = new Content("text/plain", "You're host is currently at risk! Immediate attention is required.");
 	    Mail mail = new Mail(from, subject, to, content);
 
-	    SendGrid sg = new SendGrid(System.getenv("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"));
 	    Request request = new Request();
 	    try {
 	      request.method = Method.POST;

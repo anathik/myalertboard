@@ -3,4 +3,7 @@
 <fullyQualifiedTypeName name="org.osgi.service.log.LogService"/>
 <fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatCount"/>
 <fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatInterval"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier"/>
 </qualifiedTypeNameHistroy>

@@ -1,4 +1,0 @@
--buildpath: osgi.core,\
-	osgi.cmpn,\
-	org.apache.felix.dependencymanager
--sub: *.bnd

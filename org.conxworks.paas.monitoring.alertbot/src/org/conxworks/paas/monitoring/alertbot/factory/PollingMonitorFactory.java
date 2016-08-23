@@ -16,6 +16,7 @@ import org.apache.felix.dm.Component;
 import org.apache.felix.dm.DependencyManager;
 import org.conxworks.paas.monitoring.alertbot.Monitor;
 import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier;
 import org.conxworks.paas.monitoring.poller.api.IPoller;
 
 public class PollingMonitorFactory implements ManagedServiceFactory {
@@ -75,11 +76,11 @@ public class PollingMonitorFactory implements ManagedServiceFactory {
 			Component component = m_dependencyManager.createComponent()
 					.setInterface(Job.class.getName(), properties)
 					.setImplementation(new Monitor(url))
+					.add(m_dependencyManager.createServiceDependency()
+		                	.setService(ISMSAlertNotifier.class)
+		                	.setRequired(true))
 		            .add(m_dependencyManager.createServiceDependency()
 		                	.setService(IEmailAlertNotifier.class)
-		                	.setRequired(true))
-		                .add(m_dependencyManager.createServiceDependency()
-		                	.setService(IPoller.class)
 		                	.setRequired(true))
 		                .add(m_dependencyManager.createServiceDependency()
 		                    .setService(LogService.class)

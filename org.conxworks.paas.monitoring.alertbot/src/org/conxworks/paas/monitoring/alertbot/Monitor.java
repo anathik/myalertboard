@@ -51,11 +51,11 @@ public class Monitor implements Job {
 			this.errorCount++;
 			// 2. If exceeds 3, then fire notification
 			if (this.errorCount >= 3) {
-				List<String> to = new ArrayList<>();
-				to.add("+12152801971");
-				String body = String.format("WARNING! %s not reachable. Error %d has occured %v times.", url, status);
-				NotificationMessage message = new NotificationMessage("+12158838500", to, body, "ConX Alert");
 				try {
+					List<String> to = new ArrayList<>();
+					to.add("+12152801971");
+					String body = String.format("WARNING! %s not reachable. Error %d has occured %v times.", url, status);
+					NotificationMessage message = new NotificationMessage("+12158838500", to, body, "ConX Alert");
 					emailNotifier.notifyViaEmail(message);
 				} catch (AlertNotificationException e) {
 					// TODO Auto-generated catch block

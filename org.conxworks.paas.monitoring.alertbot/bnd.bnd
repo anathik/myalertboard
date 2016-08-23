@@ -23,6 +23,7 @@ Bundle-Activator: org.conxworks.paas.monitoring.alertbot.factory.Activator
 	org.amdatu.scheduling.quartz;version=1.0.4,\
 	org.conxworks.paas.monitoring.alertbot.notifier.api;version=latest,\
 	org.conxworks.paas.monitoring.alertbot.notifier.twilio;version=latest,\
+	org.conxworks.paas.monitoring.alertbot.notifier.sendgrid;version=latest,\
 	org.conxworks.paas.monitoring.alertbot.poller.api;version=latest,\
 	org.conxworks.paas.monitoring.alertbot.poller.httpclient;version=latest,\
 	javax.servlet;version=2.5.0,\
@@ -30,7 +31,8 @@ Bundle-Activator: org.conxworks.paas.monitoring.alertbot.factory.Activator
 	joda-time;version=2.4.0,\
 	twilio-java-osgi.common;version=latest,\
 	com.springsource.javax.jms;version=1.1.0,\
-	javax.mail;version=1.4.5
+	javax.mail;version=1.4.5,\
+	com.sendgrid-java;version=3.0.8
 -runfw: org.apache.felix.framework;version='[5.2.0,5.2.0]'
 -runee: JavaSE-1.8
 Private-Package: \
