@@ -54,10 +54,10 @@ public class Monitor implements Job {
 				try {
 					List<String> to = new ArrayList<>();
 					to.add("anathi.keswa@conxsoft.com");
-					String body = String.format("WARNING! %s not reachable. Error %d has occured %d times.", url, status, errorCount);
+					String body = String.format("WARNING! %s not reachable. Error %d has occured %v times.", url, status);
 					NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", to, body, "ConX Alert");
 					emailNotifier.notifyViaEmail(message);
-				} catch (Exception e) {
+				} catch (AlertNotificationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

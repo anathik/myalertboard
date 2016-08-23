@@ -12,15 +12,15 @@ public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
 	private SendGrid sg;
 
 	public void start() {
-		this.sg = new SendGrid("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");
+		this.sg = new SendGrid(System.getenv("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"));
 	}
 	
 	@Override
 	public void notifyViaEmail(NotificationMessage message) throws AlertNotificationException {
-	    Email from = new Email(message.getFrom());
+	    Email from = new Email("alertbot@conxsoft.com");
 	    String subject = "WARNING: Alertbot Notification";
-	    Email to = new Email(message.getTo().get(0));
-	    Content content = new Content("text/plain", message.getBody());
+	    Email to = new Email("anathi.keswa@conxsoft.com");
+	    Content content = new Content("text/plain", "You're host is currently at risk! Immediate attention is required.");
 	    Mail mail = new Mail(from, subject, to, content);
 
 	    Request request = new Request();
