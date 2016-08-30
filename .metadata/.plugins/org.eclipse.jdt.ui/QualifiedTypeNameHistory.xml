@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.poller.api.IPoller"/>
 </qualifiedTypeNameHistroy>
