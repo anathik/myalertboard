@@ -1,4 +1,0 @@
-factory.pid="org.conxworks.paas.monitoring.configuration"
-factory.pidList=[ \
-  "org.conxworks.paas.monitoring.configuration.95c3dae6-814c-439f-a926-83fc8ada6d48", \
-  ]

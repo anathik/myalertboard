@@ -1,7 +1,0 @@
-package org.conxworks.paas.monitoring.alertbot.api;
-
-import org.apache.http.HttpStatus;
-
-public interface IPoller {
-	public HttpStatus ping(Location message) throws PollingException;
-}

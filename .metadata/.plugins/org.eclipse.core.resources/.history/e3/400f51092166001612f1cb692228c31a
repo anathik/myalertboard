@@ -1,7 +1,0 @@
-package org.conxworks.paas.monitoring.alertbot.factory;
-
-import org.osgi.service.cm.ManagedServiceFactory;
-
-public class PollingMonitorFactory implements ManagedServiceFactory {
-	public static final String PID = "org.conxworks.paas.monitoring.configuration";
-}

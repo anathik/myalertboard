@@ -6,9 +6,11 @@ import com.sendgrid.*;
 import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
 import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
 import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
+import java.util.Date;
 
 public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
 	
+	Date date = new Date();
 	private SendGrid sg;
 
 	public void start() {
@@ -18,10 +20,18 @@ public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
 	@Override
 	public void notifyViaEmail(NotificationMessage message) throws AlertNotificationException {
 	    Email from = new Email(message.getFrom());
-	    String subject = "WARNING: Alertbot Notification";
-	    Email to = new Email(message.getTo().get(0));
+	    //String subject = "Conx Alert :" + date + "" ;
+	    
+	    Personalization personalization = new Personalization();
+	    for (String email : message.getTo()) {
+	    	personalization.addTo(new Email(email));
+	    }
 	    Content content = new Content("text/plain", message.getBody());
-	    Mail mail = new Mail(from, subject, to, content);
+	    Mail mail = new Mail();
+	    mail.setFrom(from);
+	    mail.setSubject(message.getTitle());
+	    mail.addContent(content);
+	    mail.addPersonalization(personalization);
 
 	    Request request = new Request();
 	    try {

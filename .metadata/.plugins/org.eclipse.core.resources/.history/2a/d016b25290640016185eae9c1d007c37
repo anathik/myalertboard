@@ -1,7 +1,0 @@
-package org.conxworks.paas.monitoring.alertbot;
-
-public class AlertBotManager {
-
-	public void start() {
-	}
-}

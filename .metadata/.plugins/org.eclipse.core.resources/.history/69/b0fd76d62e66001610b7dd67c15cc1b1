@@ -1,7 +1,0 @@
-pollinghostname=www.cnn2235325.com
-pollingport=80
-pollingpath=
-pollingprotocol=http
-pollingcount=-1
-pollingperiodunit=seconds
-pollingperiod=5

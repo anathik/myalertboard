@@ -40,18 +40,19 @@ public class TwilioAlertNotifierImpl implements ISMSAlertNotifier {
 		// Create To list
 		List<String> list = message.getTo();
 		StringBuffer sb = new StringBuffer();
-		if (list.size() == 1)
-			sb.append(list.get(0));
+		if (list.size() == 1) {
+			params.add(new BasicNameValuePair("To",list.get(0)));
+			//sb.append(list.get(0));
+		}
 		else {
 			for (int i = 0; i < list.size(); i++) {
-				if (i != (list.size() - 1))
+				params.add(new BasicNameValuePair("To", list.get(i)));
+/*				if (i != (list.size() - 1))
 					sb.append(list.get(i) + ",");
 				else
-					sb.append(list.get(i));
+					sb.append(list.get(i));*/
 			}
 		}
-
-		params.add(new BasicNameValuePair("To", sb.toString()));
 
 		params.add(new BasicNameValuePair("From", message.getFrom()));
 
@@ -60,7 +61,7 @@ public class TwilioAlertNotifierImpl implements ISMSAlertNotifier {
 			Message smsMessage = messageFactory.create(params);
 			System.out.println(smsMessage.getSid());
 		} catch (TwilioRestException e) {
-			throw new AlertNotificationException(e);
+			e.printStackTrace();
 		}
 	}
 }

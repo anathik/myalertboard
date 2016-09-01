@@ -1,0 +1,9 @@
+pollinghostname=www.si.com
+pollingport=80
+pollingpath=
+pollingprotocol=http
+repeat.count=-1
+repeat.interval.period=second
+repeat.interval.value=30
+to.email.list=anathi.keswa@conxsoft.com,mduduzi.keswa@conxsoft.com
+to.sms.list=+12152801971,+12152626775

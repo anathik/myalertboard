@@ -1,6 +1,0 @@
--exportcontents: com.twilio.sdk.*,org.codehaus.*,javax.*,com.fasterxml.*,org.apache.commons.*,io.jsonwebtoken.*,org.apache.http.*
-Bundle-Version: 5.10.2.${tstamp}
-Export-Package: \
-	com.twilio.sdk.*,org.codehaus.*,javax.*,com.fasterxml.*,org.apache.commons.*,io.jsonwebtoken.*,org.apache.http.*
-Include-Resource: \
-	@jar/twilio-java-sdk-5.2.1-edge-jar-with-dependencies.jar

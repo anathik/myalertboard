@@ -1,2 +1,0 @@
-Bundle-Activator: org.conxworks.paas.monitoring.alertbot.Activator
-Private-Package: org.conxworks.paas.monitoring.alertbot

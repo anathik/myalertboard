@@ -7,4 +7,9 @@
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.poller.api.IPoller"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.deser.std.FromStringDeserializer"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.sendgrid.Email"/>
 </qualifiedTypeNameHistroy>

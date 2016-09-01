@@ -30,6 +30,10 @@ public class PollingMonitorFactory implements ManagedServiceFactory {
 	public static final String ATTRIBUTE_REPEAT_INTERVAL_PERIOD = "repeat.interval.period";
 	public static final String ATTRIBUTE_EPEAT_INTERVAL_VALUE = "repeat.interval.value";
 	
+	//ADD "TO" LIST
+	public static final String ATTRIBUTE_TO_LIST_EMAIL = "to.list.email";
+	public static final String ATTRIBUTE_TO_LIST_SMS = "to.list.sms";
+	
     private volatile LogService m_logService;
 
     private volatile DependencyManager m_dependencyManager;
@@ -60,6 +64,8 @@ public class PollingMonitorFactory implements ManagedServiceFactory {
 	        String hostname = getRequiredStringProperty(properties, ATTRIBUTE_POLLING_HOSTNAME);
 	        String protocol = getRequiredStringProperty(properties, ATTRIBUTE_POLLING_PROTOCOL);
 	        String port = getRequiredStringProperty(properties, ATTRIBUTE_POLLING_PORT);
+	        String emailList = getRequiredStringProperty(properties, ATTRIBUTE_TO_LIST_EMAIL);
+	        String smsList = getRequiredStringProperty(properties, ATTRIBUTE_TO_LIST_SMS);
 	        
 	        Integer repeatCount = Integer.parseInt(getRequiredStringProperty(properties, ATTRIBUTE_REPEAT_COUNT));
 	        String repeatIntervalPeriod =getRequiredStringProperty(properties, ATTRIBUTE_REPEAT_INTERVAL_PERIOD);
@@ -75,7 +81,8 @@ public class PollingMonitorFactory implements ManagedServiceFactory {
 			properties.put(Constants.REPEAT_INTERVAL_VALUE, repeatIntervalValue);
 			Component component = m_dependencyManager.createComponent()
 					.setInterface(Job.class.getName(), properties)
-					.setImplementation(new Monitor(url))
+					.setImplementation(new Monitor(url,emailList,smsList))
+					.setCallbacks("init", null, null, null)
 					.add(m_dependencyManager.createServiceDependency()
 		                	.setService(ISMSAlertNotifier.class)
 		                	.setRequired(true))

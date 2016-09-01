@@ -1,7 +1,0 @@
-pollinghostname=www.myconx.com
-pollingport=80
-pollingpath=
-pollingprotocol=http
-repeat.count=-1
-repeat.interval.period=seconds
-repeat.interval.value=5

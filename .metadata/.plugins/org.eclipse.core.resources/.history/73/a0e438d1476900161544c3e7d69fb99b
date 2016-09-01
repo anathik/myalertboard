@@ -1,9 +1,0 @@
-Include-Resource: @jars/sendgrid-java-3.0.8.jar,@jars/java-http-client-2.3.4.jar,OSGI-INF/src= @jars/sendgrid-java-3.0.8-sources.jar
-Bundle-Version:  3.0.8.${tstamp}
-Bundle-Category: sendgrid, java
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: com.sendgrid-java
-Bundle-Vendor: Sendgrid
-DynamicImport-Package: *
--exportcontents:  com.sendgrid
-Export-Package: com.sendgrid.*;version=3.0.8

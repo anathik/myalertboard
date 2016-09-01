@@ -1,5 +1,0 @@
-package org.conxworks.paas.monitoring.alertbot.factory;
-
-public class Activator {
-
-}

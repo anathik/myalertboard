@@ -1,7 +1,0 @@
-package org.conxworks.paas.monitoring.alertbot.impl.twilio;
-
-import java.awt.JobAttributes;
-
-public class PollingJob extends JobAttributes {
-
-}

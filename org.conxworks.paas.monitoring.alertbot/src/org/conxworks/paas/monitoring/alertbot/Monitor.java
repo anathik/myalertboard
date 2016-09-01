@@ -1,5 +1,6 @@
 package org.conxworks.paas.monitoring.alertbot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,17 @@ import org.osgi.service.log.LogService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import java.util.Date;
 
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 
 public class Monitor implements Job {
-
+	
+	//Date and format
+	Date date = new Date();
+	SimpleDateFormat datef = new SimpleDateFormat("E dd/mm/yy | h:mm a");
+	
+	
 	private volatile IEmailAlertNotifier emailNotifier;
 	private volatile ISMSAlertNotifier smsNotifier;
 	private volatile IPoller poller;
@@ -31,10 +38,33 @@ public class Monitor implements Job {
 	private int errorCount = 0;
 	private int totalErrorCount = 0;
 	private boolean errorInLastExecution = false;
+	private String emailList;
+	private String smsList;
+	private List<String> emailListCollection;
+	private List<String> smsListCollection;
 
-	public Monitor(String url) {
+	public Monitor(String url, String emailList, String smsList) {
 		super();
 		this.url = url;
+		this.emailList = emailList;
+		this.smsList = smsList;
+	}
+	
+	private void init() {
+		//EMail
+		this.emailListCollection = new ArrayList<>();
+		String[] tokens = this.emailList.split(",");
+		for (String token : tokens) {
+			this.emailListCollection.add(token);
+		}
+		
+		//SMS
+		this.smsListCollection = new ArrayList<>();
+		tokens = this.smsList.split(",");
+		for (String token : tokens) {
+			this.smsListCollection.add(token);
+		}
+
 	}
 
 	@Override
@@ -51,12 +81,11 @@ public class Monitor implements Job {
 		//Overall error count.
 		if (status != HttpStatus.SC_OK) {
 			this.totalErrorCount++;
+			this.errorCount++;
 			if (this.errorInLastExecution) {
 				//send an email
-				List<String> to = new ArrayList<>();
-				to.add("anathi.keswa@conxsoft.com");
-				String body = String.format("WARNING! %s not reachable. Error %d has occured %d times.", url, status, errorCount);
-				NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", to, body, "ConX Alert");
+				String body = String.format("%s. s% not reachable. Error %d has occured %d times.", date, url, status, errorCount);
+				NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, "ConX Alert");
 				try {
 					emailNotifier.notifyViaEmail(message);
 				} catch (AlertNotificationException e) {
@@ -95,22 +124,21 @@ public class Monitor implements Job {
 							System.out.println(String.format("Oh wait...%s is fine after %d retries. recovered!", url, tryCount));
 							recovered = true;
 							this.errorInLastExecution = false;
+							this.errorCount = 0;
+							this.totalErrorCount = 0;
 							break;
 							}
 						}
 					
 					if (!recovered) {
-						System.out.println(String.format("Retrying failed...proceeding notification"));
-						List<String> to = new ArrayList<>();
-						to.add("+12152801971");
-						String body = String.format("WARNING! %s not reachable. Error %d has occured %d times.", url, status, errorCount);
-						NotificationMessage message = new NotificationMessage("+12158838500", to, body, "ConX Alert"); 
-						smsNotifier.notifyViaSMS(message);
-						to = new ArrayList<>();
-						to.add("anathi.keswa@conxsoft.com");
-						String body1 = String.format("WARNING! %s not reachable. Error %d has occured %d times. Website now inactive for over 1 minute.", url, status, errorCount);
-						NotificationMessage message1 = new NotificationMessage("alertbot@conxsoft.com", to, body1, "ConX Alert");
-						emailNotifier.notifyViaEmail(message1);
+						//System.out.println(String.format("Retrying failed...proceeding notification"));
+						//String body = String.format("WARNING! %s not reachable. Error %d has occured %d times.", url, status, errorCount);
+						//NotificationMessage message = new NotificationMessage("+12158838500", this.smsListCollection, body, "ConX Alert"); 
+						//smsNotifier.notifyViaSMS(message);
+						String body = String.format("%s not reachable. Error %d has occured %d times. Website is down and needs immediate attention. An SMS has been sent to all set contacts.", url, status, errorCount);
+						String subject = String.format("Conx Alert-%s : %s (Error %d).", date, url, status);
+						NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+						emailNotifier.notifyViaEmail(message);
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -120,6 +148,7 @@ public class Monitor implements Job {
 		}
 		else {
 			System.out.println(String.format("Ping is good on %s",url));
+			
 		}
 	}
 
