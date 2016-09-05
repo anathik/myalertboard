@@ -1,0 +1,9 @@
+pollinghostname=www.cn.com
+pollingport=80
+pollingpath=
+pollingprotocol=http
+repeat.count=-1
+repeat.interval.period=second
+repeat.interval.value=60
+to.list.email=anathi.keswa@conxsoft.com
+to.list.sms=+12152801971

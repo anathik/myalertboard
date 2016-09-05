@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 public class Monitor implements Job {
 	
 	//Date and format
-	Date date = new Date();
-	SimpleDateFormat datef = new SimpleDateFormat("E dd/mm/yy | h:mm a");
+	private Date date = new Date();
+	private SimpleDateFormat datef = new SimpleDateFormat("E dd/mm/yy | h:mm a");
 	
 	
 	private volatile IEmailAlertNotifier emailNotifier;
@@ -69,11 +69,16 @@ public class Monitor implements Job {
 
 	@Override
 	public void execute(JobExecutionContext ctx) throws JobExecutionException {
+		if (ctx.get("test") == null)
+			ctx.put("test",new Date().toString());
+		
+		System.out.println("Test is "+ctx.get("test"));
+		
 		// 1. Poll URL
 		int status = -1;
 		try {
 			status = poller.ping(new Location(url));
-			System.out.println(String.format("Ping to %s returned a code %d", url, status));
+			System.out.println(String.format("Ping to %s returned a code %d. Error in last exe: %s", url, status, this.errorInLastExecution));
 		} catch (PollingException e) {
 			e.printStackTrace();
 			throw new JobExecutionException(e);
@@ -83,9 +88,12 @@ public class Monitor implements Job {
 			this.totalErrorCount++;
 			this.errorCount++;
 			if (this.errorInLastExecution) {
+				System.out.println(String.format("Last ping of %s failed after %d times. Sending an email. Error in last exe: %s",url,totalErrorCount,this.errorInLastExecution));
 				//send an email
-				String body = String.format("%s. s% not reachable. Error %d has occured %d times.", date, url, status, errorCount);
-				NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, "ConX Alert");
+				date = new Date();
+				String body = String.format("%s. s% not reachable. Error %d has occured %d times.", datef.format(date), url, status, errorCount);
+				String subject = String.format("Conx Alert[%s]: Service[%s] is still down", datef.format(date), url);
+				NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
 				try {
 					emailNotifier.notifyViaEmail(message);
 				} catch (AlertNotificationException e) {
@@ -96,6 +104,7 @@ public class Monitor implements Job {
 			}
 			else {//There was no error: we try 3x, send sms, and send email
 				this.errorInLastExecution = true;
+				System.out.println(String.format("Ping of %s failed. Sending sms and email. Error in last exe: %s",url,this.errorInLastExecution));
 				boolean recovered = false;
 				try {
 					//a) try 3x
@@ -112,17 +121,28 @@ public class Monitor implements Job {
 						
 						if (tryCount == 1) {
 							Thread.sleep(1000);
+							this.totalErrorCount++;
+							this.errorCount++;
 						}
 						else if (tryCount == 2) {
 							Thread.sleep(1500);	
+							this.totalErrorCount++;
+							this.errorCount++;
 							}
-						else {
+						else if (tryCount == 3) {
 							Thread.sleep(3000);	
+							this.totalErrorCount++;
+							this.errorCount++;
 							}
 						
 						if (status == HttpStatus.SC_OK) {
 							System.out.println(String.format("Oh wait...%s is fine after %d retries. recovered!", url, tryCount));
 							recovered = true;
+							String subject = String.format("Conx Alert[%s]: Service[%s] is down", datef.format(date), url);
+							String body = String.format("%s is fine after %d retries. recovered!", url, tryCount);
+							NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+							System.out.println(String.format("An e-mail is being sent..."));
+							emailNotifier.notifyViaEmail(message);
 							this.errorInLastExecution = false;
 							this.errorCount = 0;
 							this.totalErrorCount = 0;
@@ -131,13 +151,15 @@ public class Monitor implements Job {
 						}
 					
 					if (!recovered) {
-						//System.out.println(String.format("Retrying failed...proceeding notification"));
-						//String body = String.format("WARNING! %s not reachable. Error %d has occured %d times.", url, status, errorCount);
-						//NotificationMessage message = new NotificationMessage("+12158838500", this.smsListCollection, body, "ConX Alert"); 
-						//smsNotifier.notifyViaSMS(message);
-						String body = String.format("%s not reachable. Error %d has occured %d times. Website is down and needs immediate attention. An SMS has been sent to all set contacts.", url, status, errorCount);
-						String subject = String.format("Conx Alert-%s : %s (Error %d).", date, url, status);
-						NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+						System.out.println(String.format("Retrying failed...proceeding notification"));
+						String body = String.format("Conx Alert[%s]: Service[%s] is down. Requires immediate attention. An E-mail has been sent to all set recipients.", datef.format(date), url);
+						NotificationMessage message = new NotificationMessage("+12158838500", this.smsListCollection, body, "ConX Alert"); 
+						System.out.println(String.format("An SMS is being sent..."));
+						smsNotifier.notifyViaSMS(message);
+						body = String.format("%s not reachable. Status is an Error %d. Immediate attention required. An SMS has been sent to all set contacts.", url, status);
+						String subject = String.format("Conx Alert[%s]: Service[%s] is down", datef.format(date), url);
+						message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+						System.out.println(String.format("An e-mail is being sent..."));
 						emailNotifier.notifyViaEmail(message);
 					}
 				} catch (Exception e) {

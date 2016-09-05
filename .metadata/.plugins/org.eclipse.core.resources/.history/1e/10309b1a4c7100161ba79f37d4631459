@@ -1,0 +1,157 @@
+package org.conxworks.paas.monitoring.alertbot;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.amdatu.scheduling.annotations.RepeatInterval;
+import org.apache.http.HttpStatus;
+import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
+import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
+import org.conxworks.paas.monitoring.poller.api.IPoller;
+import org.conxworks.paas.monitoring.poller.api.Location;
+import org.conxworks.paas.monitoring.poller.api.PollingException;
+import org.osgi.service.log.LogService;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import java.util.Date;
+
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
+
+public class Monitor implements Job {
+	
+	//Date and format
+	private Date date = new Date();
+	private SimpleDateFormat datef = new SimpleDateFormat("E dd/mm/yy | h:mm a");
+	
+	
+	private volatile IEmailAlertNotifier emailNotifier;
+	private volatile ISMSAlertNotifier smsNotifier;
+	private volatile IPoller poller;
+	private volatile LogService logger;
+
+	private String url;
+
+	private int errorCount = 0;
+	private int totalErrorCount = 0;
+	private boolean errorInLastExecution = false;
+	private String emailList;
+	private String smsList;
+	private List<String> emailListCollection;
+	private List<String> smsListCollection;
+
+	public Monitor(String url, String emailList, String smsList) {
+		super();
+		this.url = url;
+		this.emailList = emailList;
+		this.smsList = smsList;
+	}
+	
+	private void init() {
+		//EMail
+		this.emailListCollection = new ArrayList<>();
+		String[] tokens = this.emailList.split(",");
+		for (String token : tokens) {
+			this.emailListCollection.add(token);
+		}
+		
+		//SMS
+		this.smsListCollection = new ArrayList<>();
+		tokens = this.smsList.split(",");
+		for (String token : tokens) {
+			this.smsListCollection.add(token);
+		}
+
+	}
+
+	@Override
+	public void execute(JobExecutionContext ctx) throws JobExecutionException {
+		// 1. Poll URL
+		int status = -1;
+		try {
+			status = poller.ping(new Location(url));
+			System.out.println(String.format("Ping to %s returned a code %d", url, status));
+		} catch (PollingException e) {
+			e.printStackTrace();
+			throw new JobExecutionException(e);
+		}
+		//Overall error count.
+		if (status != HttpStatus.SC_OK) {
+			this.totalErrorCount++;
+			this.errorCount++;
+			if (this.errorInLastExecution) {
+				//send an email
+				date = new Date();
+				String body = String.format("%s. s% not reachable. Error %d has occured %d times.", datef.format(date), url, status, errorCount);
+				String subject = String.format("Conx Alert[%s]: Service[%s] is still down", datef.format(date), url);
+				NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+				try {
+					emailNotifier.notifyViaEmail(message);
+				} catch (AlertNotificationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+				
+			}
+			else {//There was no error: we try 3x, send sms, and send email
+				this.errorInLastExecution = true;
+				boolean recovered = false;
+				try {
+					//a) try 3x
+					for (int tryCount = 1; tryCount < 3; tryCount++) {
+						System.out.println(String.format("Retrying %d time..to ping %s",tryCount,url));
+						try {
+							status = poller.ping(new Location(url));
+							System.out.println(String.format("Ping to %s returned a code %d", url, status));
+						} catch (PollingException e) {
+							e.printStackTrace();
+							throw new JobExecutionException(e);
+						}
+						//TASK: Make the timer increment by half a second for each retry
+						
+						if (tryCount == 1) {
+							Thread.sleep(1000);
+						}
+						else if (tryCount == 2) {
+							Thread.sleep(1500);	
+							}
+						else {
+							Thread.sleep(3000);	
+							}
+						
+						if (status == HttpStatus.SC_OK) {
+							System.out.println(String.format("Oh wait...%s is fine after %d retries. recovered!", url, tryCount));
+							recovered = true;
+							this.errorInLastExecution = false;
+							this.errorCount = 0;
+							this.totalErrorCount = 0;
+							break;
+							}
+						}
+					
+					if (!recovered) {
+						System.out.println(String.format("Retrying failed...proceeding notification"));
+						String body = String.format("Conx Alert[%s]: Service[%s] is down. Requires immediate attention. An E-mail has been sent to all set recipients.", datef.format(date), url);
+						NotificationMessage message = new NotificationMessage("+12158838500", this.smsListCollection, body, "ConX Alert"); 
+						smsNotifier.notifyViaSMS(message);
+						body = String.format("%s not reachable. Error %d has occured %d times. Website is down and needs immediate attention. An SMS has been sent to all set contacts.", url, status, errorCount);
+						String subject = String.format("Conx Alert[%s]: Service[%s] is down", datef.format(date), url);
+						message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+						emailNotifier.notifyViaEmail(message);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		else {
+			System.out.println(String.format("Ping is good on %s",url));
+			
+		}
+	}
+
+}
