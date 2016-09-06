@@ -8,11 +8,11 @@
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.poller.api.IPoller"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.deser.std.FromStringDeserializer"/>
-<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.sendgrid.Email"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.NotificationMessage"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
 </qualifiedTypeNameHistroy>

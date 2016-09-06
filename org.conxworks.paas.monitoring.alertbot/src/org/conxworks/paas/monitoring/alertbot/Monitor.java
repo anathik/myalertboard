@@ -78,7 +78,7 @@ public class Monitor implements Job {
 		int status = -1;
 		try {
 			status = poller.ping(new Location(url));
-			System.out.println(String.format("Ping to %s returned a code %d. Error in last exe: %s", url, status, this.errorInLastExecution));
+			System.out.println(String.format("Ping to %s returned a code %d.", url, status));
 		} catch (PollingException e) {
 			e.printStackTrace();
 			throw new JobExecutionException(e);
@@ -88,8 +88,21 @@ public class Monitor implements Job {
 			this.totalErrorCount++;
 			this.errorCount++;
 			if (this.errorInLastExecution) {
-				System.out.println(String.format("Last ping of %s failed after %d times. Sending an email. Error in last exe: %s",url,totalErrorCount,this.errorInLastExecution));
-				//send an email
+				System.out.println(String.format("Last ping of %s failed after %d times.",url,totalErrorCount));
+				//send an email every half hour
+				if (totalErrorCount == 60) {
+					String body = String.format("%s not reachable. Status is an Error %d. Immediate attention required. An SMS has been sent to all set contacts.", url, status);
+					String subject = String.format("Conx Alert[%s]: Service[%s] is down", datef.format(date), url);
+					NotificationMessage message = new NotificationMessage("alertbot@conxsoft.com", this.emailListCollection, body, subject);
+					System.out.println(String.format("An e-mail is being sent..."));
+					try {
+						emailNotifier.notifyViaEmail(message);
+						this.totalErrorCount = 0;
+					} catch (AlertNotificationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				date = new Date();
 				String body = String.format("%s. s% not reachable. Error %d has occured %d times.", datef.format(date), url, status, errorCount);
 				String subject = String.format("Conx Alert[%s]: Service[%s] is still down", datef.format(date), url);
@@ -104,7 +117,7 @@ public class Monitor implements Job {
 			}
 			else {//There was no error: we try 3x, send sms, and send email
 				this.errorInLastExecution = true;
-				System.out.println(String.format("Ping of %s failed. Sending sms and email. Error in last exe: %s",url,this.errorInLastExecution));
+				System.out.println(String.format("Ping of %s failed. Sending sms and email.",url));
 				boolean recovered = false;
 				try {
 					//a) try 3x
@@ -120,17 +133,17 @@ public class Monitor implements Job {
 						//TASK: Make the timer increment by half a second for each retry
 						
 						if (tryCount == 1) {
-							Thread.sleep(1000);
+							Thread.sleep(2500);
 							this.totalErrorCount++;
 							this.errorCount++;
 						}
 						else if (tryCount == 2) {
-							Thread.sleep(1500);	
+							Thread.sleep(3500);	
 							this.totalErrorCount++;
 							this.errorCount++;
 							}
 						else if (tryCount == 3) {
-							Thread.sleep(3000);	
+							Thread.sleep(4500);	
 							this.totalErrorCount++;
 							this.errorCount++;
 							}
