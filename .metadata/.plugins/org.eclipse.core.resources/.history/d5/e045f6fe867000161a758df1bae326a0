@@ -1,0 +1,49 @@
+package org.conxworks.paas.monitoring.alertbot.impl.sendgrid;
+
+import java.io.IOException;
+import com.sendgrid.*;
+
+import org.conxworks.paas.monitoring.alertbot.api.AlertNotificationException;
+import org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier;
+import org.conxworks.paas.monitoring.alertbot.api.NotificationMessage;
+import java.util.Date;
+
+public class SendgridAlertNotifierImpl implements IEmailAlertNotifier{
+	
+	Date date = new Date();
+	private SendGrid sg;
+
+	public void start() {
+		this.sg = new SendGrid("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");
+	}
+	
+	@Override
+	public void notifyViaEmail(NotificationMessage message) throws AlertNotificationException {
+	    Email from = new Email(message.getFrom());
+	    //String subject = "Conx Alert :" + date + "" ;
+	    
+	    Personalization personalization = new Personalization();
+	    for (String email : message.getTo()) {
+	    	personalization.addTo(new Email(email));
+	    }
+	    Content content = new Content("text/plain", message.getBody());
+	    Mail mail = new Mail();
+	    mail.setFrom(from);
+	    mail.setSubject(subject);
+	    mail.addContent(content);
+	    mail.addPersonalization(personalization);
+
+	    Request request = new Request();
+	    try {
+	      request.method = Method.POST;
+	      request.endpoint = "mail/send";
+	      request.body = mail.build();
+	      Response response = sg.api(request);
+	      System.out.println(response.statusCode);
+	      System.out.println(response.body);
+	      System.out.println(response.headers);
+	    } catch (IOException ex) {
+	      throw new AlertNotificationException(ex);
+	    }
+	}
+	}

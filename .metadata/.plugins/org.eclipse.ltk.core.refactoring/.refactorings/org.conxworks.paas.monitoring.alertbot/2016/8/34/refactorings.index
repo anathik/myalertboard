@@ -1,0 +1,19 @@
+1471447679116	Delete element
+1471447692926	Delete element
+1471447736571	Delete element
+1471447763543	Rename package 'org.conxworks.paas.monitoring.poller.impl.httpclient'
+1471447793359	Rename type 'HttpClientPollerImpl'
+1471448448566	Delete element
+1471449572126	Delete element
+1471450109103	Delete elements
+1471626105351	Rename field 'ATTRIBUTE_POLLING_PERIOD_UNIT'
+1471626203412	Delete elements
+1471626786009	Rename type 'PollingJob'
+1471626929924	Extract local variable 'component'
+1471627340315	Delete elements
+1471627436299	Delete element
+1471627681331	Copy file
+1471627704925	Rename resource 'org.conxworks.paas.monitoring.configuration-cnn.com.cfg'
+1471627729325	Move 'org.conxworks.paas.monitoring.configuration-si.com.cfg' to 'load'
+1471629911750	Delete element
+1471629937254	Rename resource 'org.conxworks.paas.monitoring.configuration-cnn.com.cfg'

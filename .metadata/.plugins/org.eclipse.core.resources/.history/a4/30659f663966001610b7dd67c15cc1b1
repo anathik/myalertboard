@@ -1,0 +1,7 @@
+pollinghostname=www.si.com
+pollingport=80
+pollingpath=
+pollingprotocol=http
+repeat.count=-1
+repeat.interval.period=second
+repeat.interval.value=5

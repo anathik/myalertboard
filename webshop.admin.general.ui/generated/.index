@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1473538170169" name="webshop.admin.general.ui" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="webshop.admin.general.ui"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="89d287f84895c9d05ff95eeffd5acbe64d28872c43b479bf08ecbb391678b908"/>
+      <attribute name="url" value="generated/webshop.admin.general.ui.jar"/>
+      <attribute name="size" type="Long" value="213404"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="webshop.admin.general.ui"/>
+      <attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="webshop.admin.general.ui"/>
+      <attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/Users/mduduzikeswa/Documents/dev/mazasoft/java/showcase"/>
+      <attribute name="project.path" value="/webshop.admin.general.ui"/>
+    </capability>
+  </resource>
+</repository>

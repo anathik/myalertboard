@@ -1,0 +1,6 @@
+-exportcontents: com.twilio
+Bundle-Version: 5.10.2.${tstamp}
+Export-Package: \
+	com.twilio.*;version=5.10.2
+Include-Resource: \
+	@jar/twilio-java-sdk-5.10.2-SNAPSHOT.jar

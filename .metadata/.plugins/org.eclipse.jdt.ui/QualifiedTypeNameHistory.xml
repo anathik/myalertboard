@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.osgi.service.log.LogService"/>
+<fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatCount"/>
+<fullyQualifiedTypeName name="org.amdatu.scheduling.annotations.RepeatInterval"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.IEmailAlertNotifier"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.ISMSAlertNotifier"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.poller.api.IPoller"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.deser.std.FromStringDeserializer"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.sendgrid.Email"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="org.conxworks.paas.monitoring.alertbot.api.NotificationMessage"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
+</qualifiedTypeNameHistroy>

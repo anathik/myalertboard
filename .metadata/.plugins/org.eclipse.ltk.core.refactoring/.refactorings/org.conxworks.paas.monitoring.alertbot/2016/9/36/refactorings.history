@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;body1&apos; in &apos;org.conxworks.paas.monitoring.alertbot.Monitor.execute(...)&apos; to &apos;body&apos;&#x0A;- Original project: &apos;org.conxworks.paas.monitoring.alertbot&apos;&#x0A;- Original element: &apos;org.conxworks.paas.monitoring.alertbot.Monitor.execute(JobExecutionContext).body1&apos;&#x0A;- Renamed element: &apos;body1&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;body1&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;org.conxworks.paas.monitoring.alertbot{Monitor.java[Monitor~execute~QJobExecutionContext;@body1!4464!4619!4471!4475!QString;!0!false" name="body" references="true" stamp="1472763786965" version="1.0"/>
+</session>

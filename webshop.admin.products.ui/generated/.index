@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<repository increment="1471472029317" name="webshop.admin.products.ui" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="osgi.identity" value="webshop.admin.products.ui"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="osgi.content" value="d70c208f4bbed69f38853ca4776fc5ce60c42560e0530e276f9696cdcb1a43ac"/>
+      <attribute name="url" value="generated/webshop.admin.products.ui.jar"/>
+      <attribute name="size" type="Long" value="213843"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="osgi.wiring.bundle" value="webshop.admin.products.ui"/>
+      <attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="osgi.wiring.host" value="webshop.admin.products.ui"/>
+      <attribute name="bundle-version" type="Version" value="0.0.0"/>
+    </capability>
+    <capability namespace="bndtools.workspace">
+      <attribute name="bndtools.workspace" value="file:/Users/ConxSoft/Documents/dev/devdownloads/amdatu/showcase"/>
+      <attribute name="project.path" value="/webshop.admin.products.ui"/>
+    </capability>
+  </resource>
+</repository>

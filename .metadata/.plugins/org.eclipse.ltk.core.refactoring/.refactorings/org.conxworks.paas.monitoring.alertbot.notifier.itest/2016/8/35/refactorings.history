@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;org.conxworks.paas.monitoring.alertbot.notifier.itest&apos; to &apos;org.conxworks.paas.monitoring.alertbot.notifier.itest/src&apos;&#x0A;- Original project: &apos;org.conxworks.paas.monitoring.alertbot.notifier.itest&apos;&#x0A;- Destination element: &apos;org.conxworks.paas.monitoring.alertbot.notifier.itest/src&apos;&#x0A;- Original element: &apos;org.conxworks.paas.monitoring.alertbot.notifier.itest/src/org.conxworks.paas.monitoring.alertbot.notifier.itest&apos;" description="Copy package" destination="/src" element1="/src&lt;org.conxworks.paas.monitoring.alertbot.notifier.itest" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1471878066793" version="1.0"/>
+</session>
