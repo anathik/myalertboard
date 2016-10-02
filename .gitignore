@@ -5,3 +5,6 @@ webshop.admin.general.ui/build
 */build
 release
 sendgrid.env
+#Eclipse
+.metadata
+run/generated
